@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Generator</title>
+    <title>Pro Certificate Generator</title>
+    
+    <!-- Load Google Fonts for Premium Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,230 +19,305 @@
     
     <!-- Load Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="min-h-screen bg-slate-100 p-4 md:p-8 font-sans text-slate-900">
 
-    <div class="max-w-[1600px] mx-auto flex flex-col xl:flex-row gap-8">
+    <style>
+        /* Custom Styles for Premium Certificate Look */
+        .cert-font-main { font-family: 'Montserrat', sans-serif; }
+        .cert-font-script { font-family: 'Dancing Script', cursive; }
         
-        <!-- Sidebar Controls -->
-        <div class="w-full xl:w-[380px] space-y-6 flex-shrink-0">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h1 class="text-xl font-black mb-6 text-slate-800 flex items-center gap-2">
-                    <i data-lucide="shield-check" class="text-blue-600 w-6 h-6"></i>
-                    Certificate Setup
-                </h1>
+        /* Secure document background pattern */
+        .bg-guilloche {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60 Q 30 0, 60 60 T 120 60' stroke='%235b7c8f' fill='none' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M0 60 Q 30 120, 60 60 T 120 60' stroke='%235b7c8f' fill='none' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M60 0 Q 0 30, 60 60 T 60 120' stroke='%235b7c8f' fill='none' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+        }
+
+        /* Textured outer border simulating premium print */
+        .border-texture {
+            background-color: #5b7c8f;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,0.08) 3px, rgba(255,255,255,0.08) 6px);
+        }
+
+        /* Seal Starburst Effect */
+        .seal-starburst {
+            background: #5b7c8f;
+            clip-path: polygon(50% 0%, 61% 11%, 76% 8%, 82% 22%, 96% 26%, 95% 42%, 100% 55%, 89% 66%, 92% 82%, 78% 88%, 74% 100%, 58% 95%, 45% 100%, 28% 91%, 18% 100%, 10% 85%, 0% 74%, 8% 59%, 0% 43%, 12% 31%, 6% 16%, 22% 11%, 32% 0%, 45% 5%);
+        }
+        
+        /* Custom scrollbar for sidebar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 p-4 lg:p-8 font-sans text-slate-900 flex flex-col">
+
+    <div class="max-w-[1600px] w-full mx-auto flex flex-col xl:flex-row gap-8 flex-1">
+        
+        <!-- Sidebar Controls (Modern SaaS Look) -->
+        <div class="w-full xl:w-[400px] flex-shrink-0 flex flex-col h-full xl:max-h-[calc(100vh-4rem)]">
+            <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex-1 overflow-y-auto">
+                <div class="flex items-center gap-3 mb-8 pb-4 border-b border-slate-100">
+                    <div class="bg-blue-600 text-white p-2 rounded-lg shadow-md shadow-blue-200">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-800 leading-tight">Certificate Studio</h1>
+                        <p class="text-xs text-slate-500 font-medium">Professional Print Engine</p>
+                    </div>
+                </div>
                 
-                <div class="space-y-5">
-                    <!-- Recipient -->
-                    <section>
-                        <h2 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-[0.2em]">Recipient</h2>
-                        <div class="space-y-2">
-                            <div class="relative">
-                                <i data-lucide="user" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                                <input id="input-name" type="text" value="Rahul Sharma" class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Full Name">
+                <div class="space-y-6">
+                    <!-- Recipient Data -->
+                    <section class="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
+                        <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i data-lucide="user" class="w-3 h-3"></i> Recipient Info
+                        </h2>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Full Name</label>
+                                <input id="input-name" type="text" value="Rahul Sharma" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium transition-shadow shadow-sm" placeholder="e.g. John Doe">
                             </div>
-                            <div class="relative">
-                                <i data-lucide="file-text" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                                <input id="input-course" type="text" value="Scaffolding Safety Training Program" class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Program Name">
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Course Name</label>
+                                <input id="input-course" type="text" value="Scaffolding Safety Training Program" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium transition-shadow shadow-sm" placeholder="e.g. Advanced React">
                             </div>
-                        </div>
-                    </section>
-
-                    <!-- Details -->
-                    <section>
-                        <h2 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-[0.2em]">Details</h2>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div class="relative">
-                                <i data-lucide="hash" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                                <input id="input-cert-id" type="text" value="FISC-2024-001" class="w-full pl-10 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Cert ID">
-                            </div>
-                            <div class="relative">
-                                <i data-lucide="calendar" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                                <input id="input-date" type="text" class="w-full pl-10 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Date">
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Course Description</label>
+                                <textarea id="input-course-desc" rows="3" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium transition-shadow shadow-sm">Including Online Training, Technical Assessment, and Online Examination, and has demonstrated required knowledge and safety competency as per industry standards.</textarea>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Company -->
-                    <section>
-                        <h2 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-[0.2em]">Company</h2>
-                        <div class="relative mb-2">
-                            <i data-lucide="settings-2" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                            <input id="input-reg-no" type="text" value="REG NO: 2024/IND/00912" class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Reg No">
+                    <!-- Certificate Metadata -->
+                    <section class="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
+                        <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <i data-lucide="file-badge" class="w-3 h-3"></i> Document Meta
+                        </h2>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Date of Issue</label>
+                                <input id="input-date" type="text" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium shadow-sm" placeholder="DD/MM/YYYY">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Certificate ID</label>
+                                <input id="input-cert-id" type="text" value="FISC-2024-001" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium shadow-sm">
+                            </div>
                         </div>
-                        <div class="relative">
-                            <i data-lucide="user" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
-                            <input id="input-sign-name" type="text" value="Authorized Signatory" class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" placeholder="Signatory Name">
-                        </div>
-                    </section>
-
-                    <!-- Background -->
-                    <section>
-                        <h2 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-[0.2em]">Background</h2>
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-4">
-                            <label class="flex items-center gap-3 cursor-pointer group">
-                                <div class="p-2 bg-white rounded-lg border border-slate-200 group-hover:border-blue-400">
-                                    <i data-lucide="image" class="w-5 h-5 text-blue-500"></i>
-                                </div>
-                                <div class="flex-1 text-left">
-                                    <div class="text-xs font-bold">Upload BG</div>
-                                    <div id="bg-status" class="text-[10px] text-slate-400">Select Image</div>
-                                </div>
-                                <input id="input-bg" type="file" class="hidden" accept="image/*">
-                            </label>
-                            
-                            <div id="bg-controls" class="space-y-3 px-1 hidden">
-                                <div class="flex items-center gap-4">
-                                    <span class="text-[10px] font-bold text-slate-400 w-12">BLUR</span>
-                                    <input id="input-blur" type="range" min="0" max="15" value="0" class="flex-1 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="text-[10px] font-bold text-slate-400 w-12">FADE</span>
-                                    <input id="input-opacity" type="range" min="0" max="100" value="15" class="flex-1 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
-                                </div>
+                        <div class="space-y-3 mt-3 pt-3 border-t border-slate-200/60">
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Organization Reg No.</label>
+                                <input id="input-reg-no" type="text" value="REG NO: 2024/IND/00912" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium shadow-sm">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-semibold text-slate-500 mb-1 block">Signatory Title</label>
+                                <input id="input-sign-name" type="text" value="Signature of Field Incharge" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm font-medium shadow-sm">
                             </div>
                         </div>
                     </section>
 
-                    <!-- Uploads -->
-                    <section>
-                        <h2 class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-[0.2em]">Uploads</h2>
-                        <div class="grid grid-cols-2 gap-2">
-                            <label class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-400 text-center">
-                                <i data-lucide="image" class="w-4 h-4 text-slate-400 mb-1"></i>
-                                <span class="text-[9px] font-black uppercase">Logo</span>
-                                <input id="input-logo" type="file" class="hidden" accept="image/*">
-                            </label>
-                            <label class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-400 text-center">
-                                <i data-lucide="stamp" class="w-4 h-4 text-slate-400 mb-1"></i>
-                                <span class="text-[9px] font-black uppercase">Stamp</span>
-                                <input id="input-stamp" type="file" class="hidden" accept="image/*">
-                            </label>
-                            <label class="flex flex-col items-center p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-blue-400 text-center col-span-2">
-                                <i data-lucide="file-text" class="w-4 h-4 text-slate-400 mb-1"></i>
-                                <span class="text-[9px] font-black uppercase">Authorized Signature</span>
-                                <input id="input-sign" type="file" class="hidden" accept="image/*">
-                            </label>
+                    <!-- Visual Assets -->
+                    <section class="bg-slate-50/50 p-4 rounded-xl border border-slate-100">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                                <i data-lucide="image" class="w-3 h-3"></i> Visual Assets
+                            </h2>
+                            <button id="btn-drive-auth" class="text-[10px] font-bold text-blue-500 hover:text-blue-700 flex items-center gap-1 bg-blue-50 px-2 py-1 rounded border border-blue-100 transition-colors">
+                                <i data-lucide="cloud" class="w-3 h-3"></i> Auth Drive
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- Background Image Upload -->
+                            <div class="col-span-2 relative group shadow-sm bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-blue-400 transition-all flex h-16">
+                                <label class="flex-1 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50/50">
+                                    <i data-lucide="layout-template" class="w-4 h-4 text-slate-400 group-hover:text-blue-500 mb-1 transition-colors"></i>
+                                    <span class="text-[9px] font-bold text-slate-600">Background Image</span>
+                                    <input id="input-bg" type="file" class="hidden" accept="image/*">
+                                </label>
+                                <button onclick="openDrivePicker('cert-bg-img', 'cert-bg-container')" class="w-12 border-l border-slate-200 bg-slate-50 hover:bg-blue-100 flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" title="Select from Google Drive">
+                                    <i data-lucide="hard-drive" class="w-4 h-4 mb-1"></i>
+                                    <span class="text-[8px] font-bold">Drive</span>
+                                </button>
+                            </div>
+                            <!-- Logo Upload -->
+                            <div class="relative group shadow-sm bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-blue-400 transition-all flex h-16">
+                                <label class="flex-1 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50/50">
+                                    <i data-lucide="shield" class="w-4 h-4 text-slate-400 group-hover:text-blue-500 mb-1 transition-colors"></i>
+                                    <span class="text-[9px] font-bold text-slate-600">Company Logo</span>
+                                    <input id="input-logo" type="file" class="hidden" accept="image/*">
+                                </label>
+                                <button onclick="openDrivePicker('cert-logo-img', 'cert-logo-default')" class="w-10 border-l border-slate-200 bg-slate-50 hover:bg-blue-100 flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" title="Select from Google Drive">
+                                    <i data-lucide="hard-drive" class="w-3 h-3 mb-1"></i>
+                                </button>
+                            </div>
+                            <!-- Stamp Upload -->
+                            <div class="relative group shadow-sm bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-blue-400 transition-all flex h-16">
+                                <label class="flex-1 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50/50">
+                                    <i data-lucide="stamp" class="w-4 h-4 text-slate-400 group-hover:text-blue-500 mb-1 transition-colors"></i>
+                                    <span class="text-[9px] font-bold text-slate-600">Official Seal</span>
+                                    <input id="input-stamp" type="file" class="hidden" accept="image/*">
+                                </label>
+                                <button onclick="openDrivePicker('cert-stamp-img', 'cert-stamp-default')" class="w-10 border-l border-slate-200 bg-slate-50 hover:bg-blue-100 flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" title="Select from Google Drive">
+                                    <i data-lucide="hard-drive" class="w-3 h-3 mb-1"></i>
+                                </button>
+                            </div>
+                            <!-- Authorized Signature Upload -->
+                            <div class="col-span-2 relative group shadow-sm bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-blue-400 transition-all flex h-16">
+                                <label class="flex-1 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50/50">
+                                    <i data-lucide="pen-tool" class="w-4 h-4 text-slate-400 group-hover:text-blue-500 mb-1 transition-colors"></i>
+                                    <span class="text-[9px] font-bold text-slate-600">Authorized Signature</span>
+                                    <input id="input-sign" type="file" class="hidden" accept="image/*">
+                                </label>
+                                <button onclick="openDrivePicker('cert-sign-img', 'cert-sign-default')" class="w-12 border-l border-slate-200 bg-slate-50 hover:bg-blue-100 flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" title="Select from Google Drive">
+                                    <i data-lucide="hard-drive" class="w-4 h-4 mb-1"></i>
+                                    <span class="text-[8px] font-bold">Drive</span>
+                                </button>
+                            </div>
                         </div>
                     </section>
 
-                    <button id="download-btn" class="w-full py-3 px-6 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 transition-all bg-slate-900 hover:bg-blue-600 text-white cursor-pointer">
-                        <i id="download-icon" data-lucide="download" class="w-4 h-4"></i>
-                        <span id="download-text">Download PDF</span>
-                    </button>
                 </div>
             </div>
+            
+            <button id="download-btn" class="w-full mt-4 py-4 px-6 rounded-2xl font-bold text-sm uppercase tracking-widest shadow-xl flex items-center justify-center gap-3 transition-all bg-[#0f172a] hover:bg-blue-600 text-white cursor-pointer group">
+                <i id="download-icon" data-lucide="download" class="w-5 h-5 group-hover:-translate-y-1 transition-transform"></i>
+                <span id="download-text">Export High-Res PDF</span>
+            </button>
         </div>
 
-        <!-- Certificate Display Area -->
-        <div class="flex-1 overflow-x-auto pb-10">
-            <div class="inline-block min-w-full">
-                <div class="bg-slate-200 p-8 rounded-2xl shadow-inner border border-slate-300 flex justify-center">
+        <!-- Certificate Display Area (Main Canvas) -->
+        <div class="flex-1 overflow-x-auto overflow-y-hidden pb-10 flex justify-center items-start">
+            <div class="inline-block">
+                <!-- Drop shadow wrapper to separate from canvas engine -->
+                <div class="p-4 md:p-8 bg-white/40 backdrop-blur-md rounded-3xl shadow-2xl border border-white/60">
                     
-                    <!-- THE CERTIFICATE CANVAS -->
-                    <div id="certificate-canvas" class="relative bg-white shadow-2xl overflow-hidden" style="width: 1122px; height: 793px; font-family: 'Segoe UI', Roboto, sans-serif;">
+                    <!-- THE ACTUAL RENDER CANVAS (Fixed Dimensions: A4 Landscape at ~96dpi) -->
+                    <div id="certificate-canvas" class="relative bg-white overflow-hidden cert-font-main text-[#1e293b] shadow-lg" style="width: 1122px; height: 793px;">
                         
-                        <!-- Background Image Layer -->
-                        <div id="cert-bg-container" class="absolute inset-0 z-0 pointer-events-none hidden" style="opacity: 0.15; filter: blur(0px);">
+                        <!-- Uploaded Background Image Layer -->
+                        <div id="cert-bg-container" class="absolute inset-0 z-0 pointer-events-none hidden">
                             <img id="cert-bg-img" src="" class="w-full h-full object-cover" alt="Background">
                         </div>
 
-                        <!-- Outer Border -->
-                        <div class="absolute inset-6 border border-slate-300 z-10 pointer-events-none"></div>
-                        
-                        <!-- Inner Double Border -->
-                        <div class="absolute inset-10 border-[8px] border-double border-slate-900 z-10 pointer-events-none"></div>
-
-                        <!-- CONTENT LAYER -->
-                        <div class="absolute inset-10 z-20 flex flex-col px-12 py-8">
+                        <!-- 3. MAIN CONTENT CONTAINER -->
+                        <div class="absolute inset-0 z-30 flex flex-col items-center px-24 pt-20 pb-16">
                             
-                            <!-- HEADER -->
-                            <div class="flex flex-col items-center">
-                                <!-- Logo Image (Hidden by default) -->
-                                <img id="cert-logo-img" src="" alt="Logo" class="h-20 w-auto object-contain mb-2 hidden">
+                            <!-- Header Title -->
+                            <h1 class="text-2xl font-bold text-[#2c3e50] tracking-[0.15em] uppercase mt-0 mb-6">
+                                Digital Certificate of Completion
+                            </h1>
+
+                            <!-- Branding / Logo -->
+                            <div class="flex flex-col items-center mb-6">
+                                <!-- Uploaded Logo -->
+                                <img id="cert-logo-img" src="" alt="Logo" class="h-20 w-auto object-contain mb-3 hidden">
                                 
-                                <!-- Default Logo block -->
-                                <div id="cert-logo-default" class="flex items-center gap-3 mb-2">
-                                    <div class="bg-slate-900 text-white p-3 rounded-xl">
-                                        <i data-lucide="shield-check" class="w-10 h-10"></i>
+                                <!-- Default Branding -->
+                                <div id="cert-logo-default" class="flex items-center gap-4 mb-3">
+                                    <div class="text-[#2c3e50]">
+                                        <!-- Replicating the Field Incharge look -->
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
                                     </div>
-                                    <div class="text-left leading-none">
-                                        <div class="text-3xl font-black text-slate-900 tracking-tighter">FIELD</div>
-                                        <div class="text-3xl font-black text-blue-700 tracking-tighter">INCHARGE</div>
+                                    <div class="text-left leading-none border-l-2 border-[#5b7c8f] pl-4">
+                                        <div class="text-3xl font-black text-[#2c3e50] tracking-tight">FIELD</div>
+                                        <div class="text-3xl font-black text-[#2c3e50] tracking-tight">INCHARGE</div>
                                     </div>
                                 </div>
-                                <div id="cert-reg-no" class="text-[10px] font-black text-slate-500 tracking-widest uppercase mt-3 mb-4">
+                                
+                                <div class="w-48 h-[1px] bg-[#5b7c8f]/30 my-2"></div>
+                                <div id="cert-reg-no" class="text-[10px] font-bold text-slate-500 tracking-[0.2em] uppercase">
                                     REG NO: 2024/IND/00912
                                 </div>
                             </div>
 
-                            <!-- BODY -->
-                            <div class="flex-1 flex flex-col items-center justify-center text-center px-10">
-                                <h1 class="text-5xl font-black text-slate-900 mb-4 tracking-widest uppercase border-y-2 border-slate-900 py-4 w-full max-w-3xl">
-                                    Certificate of Completion
-                                </h1>
+                            <!-- Primary Certification Text -->
+                            <div class="flex-1 w-full flex flex-col items-center justify-center text-center">
+                                <p class="text-[19px] font-medium text-slate-600 mb-4 italic">This is to certify that</p>
                                 
-                                <p class="text-xl text-slate-500 italic mb-3">This is to certify that</p>
-                                
-                                <h2 id="cert-name" class="text-5xl font-black text-slate-900 mb-4 uppercase tracking-tight italic border-b-[3px] border-slate-200 pb-2 w-full max-w-xl">
-                                    Rahul Sharma
-                                </h2>
+                                <!-- Candidate Name -->
+                                <div class="w-full max-w-2xl relative mb-6 flex justify-center">
+                                    <h2 id="cert-name" class="text-[44px] font-bold text-[#1e293b] uppercase tracking-[0.05em] px-8 pb-3 z-10">
+                                        Rahul Sharma
+                                    </h2>
+                                    <!-- Custom underline spanning specific width -->
+                                    <div class="absolute bottom-0 left-[10%] right-[10%] h-[2px] bg-[#2c3e50]"></div>
+                                </div>
 
-                                <p class="text-xl text-slate-700 leading-relaxed max-w-3xl">
-                                    Has successfully completed the <span id="cert-course" class="font-bold text-blue-700">Scaffolding Safety Training Program</span>
-                                    <br>
-                                    <span class="text-base text-slate-500 mt-2 block font-medium">
-                                        Including Online Training, Technical Assessment, and Online Examination, and has demonstrated 
-                                        required knowledge and safety competency as per industry standards.
-                                    </span>
+                                <p class="text-[19px] font-medium text-slate-600 mb-4">
+                                    has successfully completed the course:
                                 </p>
+
+                                <!-- Course Name -->
+                                <h3 id="cert-course" class="text-3xl font-black text-[#2c3e50] uppercase tracking-wide mb-2 px-10">
+                                    Scaffolding Safety Training Program
+                                </h3>
+                                
+                                <!-- Course Description -->
+                                <span id="cert-course-desc" class="text-[17px] text-slate-600 mt-2 block font-medium max-w-3xl leading-relaxed">
+                                    Including Online Training, Technical Assessment, and Online Examination, and has demonstrated required knowledge and safety competency as per industry standards.
+                                </span>
                             </div>
 
-                            <!-- FOOTER -->
-                            <div class="grid grid-cols-3 gap-6 items-end w-full mt-auto pt-2 pb-2">
+                            <!-- Footer Section (Grid) -->
+                            <div class="w-full grid grid-cols-3 items-end mt-auto pt-6 px-4 gap-6">
                                 
-                                <!-- Left: Issue Date -->
-                                <div class="text-left">
-                                    <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Issue Date</p>
-                                    <div id="cert-date" class="text-lg font-bold text-slate-900 border-b-2 border-slate-300 pb-1 w-48">
-                                        <!-- Populated via JS -->
+                                <!-- Left: Signature Block -->
+                                <div class="flex flex-col items-center justify-end text-center">
+                                    <div class="relative w-64 h-[64px] mb-2 flex flex-col justify-end items-center">
+                                        <!-- Uploaded Sign -->
+                                        <img id="cert-sign-img" src="" class="absolute bottom-1 max-h-[70px] w-auto max-w-full object-contain z-10 hidden" alt="Signature">
+                                        
+                                        <!-- Default Cursive Sign -->
+                                        <div id="cert-sign-default" class="absolute bottom-1 w-full text-center cert-font-script text-[40px] text-slate-800 leading-none z-10 opacity-80">
+                                            Signature
+                                        </div>
+                                        <!-- Line -->
+                                        <div class="w-full h-[1px] bg-slate-400 absolute bottom-0"></div>
                                     </div>
+                                    <p id="cert-sign-name" class="font-semibold text-sm text-[#2c3e50] uppercase tracking-wide">
+                                        Signature of Field Incharge
+                                    </p>
                                 </div>
 
-                                <!-- Center: Stamp -->
-                                <div class="flex justify-center">
-                                    <!-- Uploaded Stamp -->
+                                <!-- Center: Official Seal/Stamp -->
+                                <div class="flex justify-center items-end pb-1">
                                     <img id="cert-stamp-img" src="" class="h-28 w-28 object-contain mix-blend-multiply opacity-95 hidden" alt="Stamp">
                                     
-                                    <!-- Default Stamp Area -->
-                                    <div id="cert-stamp-default" class="h-24 w-24 border-2 border-dashed border-slate-300 rounded-full flex flex-col items-center justify-center">
-                                        <i data-lucide="stamp" class="w-8 h-8 text-slate-300 mb-1"></i>
-                                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Stamp</span>
+                                    <!-- High-End Default SVG Seal -->
+                                    <div id="cert-stamp-default" class="relative w-[100px] h-[100px] flex items-center justify-center">
+                                        <div class="absolute inset-0 seal-starburst opacity-90 shadow-inner"></div>
+                                        <div class="absolute inset-1 rounded-full border border-white/50 border-dashed"></div>
+                                        <div class="absolute inset-2 bg-[#ffffff] rounded-full flex flex-col items-center justify-center border-2 border-[#5b7c8f]">
+                                            <i data-lucide="check-circle" class="w-7 h-7 text-[#5b7c8f] mb-0.5"></i>
+                                            <span class="text-[5px] font-black text-[#5b7c8f] uppercase tracking-widest text-center leading-tight">Official<br>Certified</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Right: Signature & ID -->
-                                <div class="text-right flex flex-col items-end">
-                                    <div class="relative w-64 h-12 mb-2">
-                                        <!-- Uploaded Signature -->
-                                        <img id="cert-sign-img" src="" class="absolute bottom-0 right-0 max-h-32 max-w-full object-contain hidden" alt="Signature">
-                                        
-                                        <!-- Default Sign Line -->
-                                        <div id="cert-sign-default" class="absolute bottom-0 w-full border-b border-dashed border-slate-300"></div>
+                                <!-- Right: Date Block -->
+                                <div class="flex flex-col items-center justify-end text-center">
+                                    <div class="relative w-56 h-[64px] mb-2 flex flex-col justify-end items-center">
+                                        <div id="cert-date" class="absolute bottom-2 w-full text-center text-xl font-bold text-[#1e293b] z-10">
+                                            <!-- JS Populated -->
+                                        </div>
+                                        <!-- Line -->
+                                        <div class="w-full h-[1px] bg-slate-400 absolute bottom-0"></div>
                                     </div>
-                                    <div class="w-64 border-t-2 border-slate-900 pt-2">
-                                        <p id="cert-sign-name" class="font-black text-slate-900 uppercase text-sm leading-tight">
-                                            Authorized Signatory
-                                        </p>
-                                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">
-                                            Cert ID: <span id="cert-id" class="text-slate-900">FISC-2024-001</span>
-                                        </p>
-                                    </div>
+                                    <p class="font-semibold text-sm text-[#2c3e50] uppercase tracking-wide">Date of Issue</p>
+                                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1.5">
+                                        Cert ID: <span id="cert-id" class="text-[#2c3e50]">FISC-2024-001</span>
+                                    </p>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -245,122 +325,270 @@
 
     <!-- Application Logic -->
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // Initialize Date Input with today's date
-        const todayDate = new Date().toLocaleDateString('en-GB');
-        document.getElementById('input-date').value = todayDate;
-        document.getElementById('cert-date').innerText = todayDate;
-
-        // Data Binding helper
-        function bindInput(inputId, displayId) {
-            document.getElementById(inputId).addEventListener('input', (e) => {
-                document.getElementById(displayId).innerText = e.target.value;
-            });
-        }
-
-        // Bind text fields
-        bindInput('input-name', 'cert-name');
-        bindInput('input-course', 'cert-course');
-        bindInput('input-cert-id', 'cert-id');
-        bindInput('input-date', 'cert-date');
-        bindInput('input-reg-no', 'cert-reg-no');
-        bindInput('input-sign-name', 'cert-sign-name');
-
-        // Image Upload Helper
-        function setupImageUpload(inputId, imgId, defaultId, onUploadCallback) {
-            document.getElementById(inputId).addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        const img = document.getElementById(imgId);
-                        img.src = event.target.result;
-                        img.classList.remove('hidden');
-                        if (defaultId) {
-                            document.getElementById(defaultId).classList.add('hidden');
-                        }
-                        if (onUploadCallback) onUploadCallback();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-
-        // Setup Image Uploads
-        setupImageUpload('input-logo', 'cert-logo-img', 'cert-logo-default');
-        setupImageUpload('input-stamp', 'cert-stamp-img', 'cert-stamp-default');
-        setupImageUpload('input-sign', 'cert-sign-img', 'cert-sign-default');
-
-        // Special Setup for Background
-        setupImageUpload('input-bg', 'cert-bg-img', null, () => {
-            document.getElementById('cert-bg-container').classList.remove('hidden');
-            document.getElementById('bg-controls').classList.remove('hidden');
-            document.getElementById('bg-status').innerText = 'Image Loaded';
-        });
-
-        // Background Controls
-        const bgContainer = document.getElementById('cert-bg-container');
-        document.getElementById('input-blur').addEventListener('input', (e) => {
-            const currentOpacity = document.getElementById('input-opacity').value / 100;
-            bgContainer.style.filter = `blur(${e.target.value}px)`;
-            bgContainer.style.opacity = currentOpacity;
-        });
-        document.getElementById('input-opacity').addEventListener('input', (e) => {
-            const currentBlur = document.getElementById('input-blur').value;
-            bgContainer.style.opacity = e.target.value / 100;
-            bgContainer.style.filter = `blur(${currentBlur}px)`;
-        });
-
-        // PDF Generation
-        document.getElementById('download-btn').addEventListener('click', async () => {
-            const btn = document.getElementById('download-btn');
-            const icon = document.getElementById('download-icon');
-            const text = document.getElementById('download-text');
-            const canvasElement = document.getElementById('certificate-canvas');
-            const recipientName = document.getElementById('input-name').value || 'Student';
-
-            // Loading state
-            btn.classList.add('bg-slate-400', 'cursor-not-allowed');
-            btn.classList.remove('bg-slate-900', 'hover:bg-blue-600');
-            icon.setAttribute('data-lucide', 'loader-2');
-            icon.classList.add('animate-spin');
-            text.innerText = 'Exporting PDF...';
+        // Use DOMContentLoaded to ensure elements exist before manipulating them
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Icons
             lucide.createIcons();
 
-            try {
-                // Generate Canvas
-                const canvas = await html2canvas(canvasElement, {
-                    scale: 3, // High resolution
-                    useCORS: true,
-                    logging: false,
-                    backgroundColor: '#ffffff'
-                });
-                
-                // Generate PDF
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jspdf.jsPDF({
-                    orientation: 'landscape',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height]
-                });
+            // Initialize Default Date safely
+            const todayDate = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            const inputDateEl = document.getElementById('input-date');
+            const certDateEl = document.getElementById('cert-date');
+            
+            if (inputDateEl) inputDateEl.value = todayDate;
+            if (certDateEl) certDateEl.innerText = todayDate;
 
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save(`Certificate_${recipientName.replace(/\s+/g, '_')}.pdf`);
-            } catch (error) {
-                console.error("PDF Generation failed", error);
-                alert("An error occurred while generating the PDF.");
-            } finally {
-                // Reset state
-                btn.classList.remove('bg-slate-400', 'cursor-not-allowed');
-                btn.classList.add('bg-slate-900', 'hover:bg-blue-600');
-                icon.setAttribute('data-lucide', 'download');
-                icon.classList.remove('animate-spin');
-                text.innerText = 'Download PDF';
-                lucide.createIcons();
+            // Data Binding Function
+            function bindInput(inputId, displayId) {
+                const input = document.getElementById(inputId);
+                const display = document.getElementById(displayId);
+                
+                if (input && display) {
+                    input.addEventListener('input', (e) => {
+                        display.innerText = e.target.value;
+                    });
+                }
+            }
+
+            // Apply Bindings safely
+            bindInput('input-name', 'cert-name');
+            bindInput('input-course', 'cert-course');
+            bindInput('input-course-desc', 'cert-course-desc');
+            bindInput('input-cert-id', 'cert-id');
+            bindInput('input-date', 'cert-date');
+            bindInput('input-reg-no', 'cert-reg-no');
+            bindInput('input-sign-name', 'cert-sign-name');
+
+            // Professional Image Uploader Helper
+            function setupImageUpload(inputId, imgId, defaultId) {
+                const input = document.getElementById(inputId);
+                if (!input) return;
+
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const img = document.getElementById(imgId);
+                            if (img) {
+                                img.src = event.target.result;
+                                img.classList.remove('hidden');
+                            }
+                            
+                            if (defaultId) {
+                                const def = document.getElementById(defaultId);
+                                if(def) def.classList.add('hidden');
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Initialize Uploaders safely
+            setupImageUpload('input-logo', 'cert-logo-img', 'cert-logo-default');
+            setupImageUpload('input-stamp', 'cert-stamp-img', 'cert-stamp-default');
+            setupImageUpload('input-sign', 'cert-sign-img', 'cert-sign-default');
+            
+            // Background Image Setup
+            setupImageUpload('input-bg', 'cert-bg-img');
+            const inputBgEl = document.getElementById('input-bg');
+            if (inputBgEl) {
+                inputBgEl.addEventListener('change', () => {
+                    const bgContainer = document.getElementById('cert-bg-container');
+                    if (bgContainer) bgContainer.classList.remove('hidden');
+                });
+            }
+
+            // High-Resolution PDF Export Engine
+            let isGeneratingPDF = false;
+            const downloadBtn = document.getElementById('download-btn');
+            
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', async () => {
+                    if (isGeneratingPDF) return;
+                    isGeneratingPDF = true;
+                    
+                    const btn = document.getElementById('download-btn');
+                    const icon = document.getElementById('download-icon');
+                    const text = document.getElementById('download-text');
+                    const canvasElement = document.getElementById('certificate-canvas');
+                    
+                    const recipientNameInput = document.getElementById('input-name');
+                    const recipientName = (recipientNameInput && recipientNameInput.value) ? recipientNameInput.value : 'Certified_Student';
+
+                    if (!canvasElement) {
+                        isGeneratingPDF = false;
+                        return;
+                    }
+
+                    // Loading UI State
+                    if(btn) {
+                        btn.classList.add('bg-slate-400', 'cursor-not-allowed', 'pointer-events-none');
+                        btn.classList.remove('bg-[#0f172a]', 'hover:bg-blue-600');
+                    }
+                    if(icon) {
+                        icon.setAttribute('data-lucide', 'loader-2');
+                        icon.classList.add('animate-spin');
+                    }
+                    if(text) text.innerText = 'Rendering Engine Active...';
+                    lucide.createIcons();
+
+                    try {
+                        // Generate Canvas with high-scale for crisp printing
+                        const canvas = await html2canvas(canvasElement, {
+                            scale: 3, // 3x resolution for sharp text and borders
+                            useCORS: true,
+                            logging: false,
+                            backgroundColor: '#ffffff'
+                        });
+                        
+                        // Initialize jsPDF landscape A4 matching proportions
+                        const imgData = canvas.toDataURL('image/png', 1.0);
+                        const pdf = new jspdf.jsPDF({
+                            orientation: 'landscape',
+                            unit: 'px',
+                            format: [canvas.width, canvas.height]
+                        });
+
+                        // Add image and save
+                        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                        pdf.save(`${recipientName.replace(/\s+/g, '_')}_Certificate.pdf`);
+                        
+                    } catch (error) {
+                        console.error("PDF Engine Error:", error);
+                        alert("Failed to render the document. Please ensure uploaded images are valid.");
+                    } finally {
+                        // Restore UI State
+                        isGeneratingPDF = false;
+                        if(btn) {
+                            btn.classList.remove('bg-slate-400', 'cursor-not-allowed', 'pointer-events-none');
+                            btn.classList.add('bg-[#0f172a]', 'hover:bg-blue-600');
+                        }
+                        if(icon) {
+                            icon.setAttribute('data-lucide', 'download');
+                            icon.classList.remove('animate-spin');
+                        }
+                        if(text) text.innerText = 'Export High-Res PDF';
+                        lucide.createIcons();
+                    }
+                });
+            }
+            
+            // Google Drive Auth listener attachment
+            const driveAuthBtn = document.getElementById('btn-drive-auth');
+            if (driveAuthBtn) {
+                driveAuthBtn.addEventListener('click', () => {
+                    if (GOOGLE_CLIENT_ID.includes('YOUR_CLIENT_ID')) {
+                        alert('Google Drive API is not configured.\n\nPlease add your CLIENT_ID and API_KEY in the source code to enable cloud imports.');
+                        return;
+                    }
+                    const tokenClient = google.accounts.oauth2.initTokenClient({
+                        client_id: GOOGLE_CLIENT_ID,
+                        scope: 'https://www.googleapis.com/auth/drive.readonly',
+                        callback: (response) => {
+                            if (response.error !== undefined) {
+                                throw (response);
+                            }
+                            oauthToken = response.access_token;
+                            alert('Google Drive Authenticated Successfully!');
+                        },
+                    });
+                    tokenClient.requestAccessToken();
+                });
             }
         });
+
+        // ==========================================
+        // Google Drive Picker API Integration
+        // ==========================================
+        // Note: To use this in production, you must set your own CLIENT_ID and API_KEY.
+        const GOOGLE_CLIENT_ID = 'YOUR_CLIENT_ID_HERE.apps.googleusercontent.com';
+        const GOOGLE_API_KEY = 'YOUR_API_KEY_HERE';
+        const GOOGLE_APP_ID = 'YOUR_APP_ID_HERE';
+        
+        let oauthToken = null;
+        let pickerApiLoaded = false;
+        
+        // Dynamically load Google APIs
+        function loadGoogleApis() {
+            const gapiScript = document.createElement('script');
+            gapiScript.src = 'https://apis.google.com/js/api.js';
+            gapiScript.onload = () => {
+                if(window.gapi) {
+                    gapi.load('picker', () => { pickerApiLoaded = true; });
+                }
+            };
+            document.head.appendChild(gapiScript);
+
+            const gsiScript = document.createElement('script');
+            gsiScript.src = 'https://accounts.google.com/gsi/client';
+            document.head.appendChild(gsiScript);
+        }
+        loadGoogleApis();
+
+        function openDrivePicker(imgId, defaultId) {
+            if (GOOGLE_CLIENT_ID.includes('YOUR_CLIENT_ID')) {
+                alert('Google Drive API is not configured.\n\nPlease add your CLIENT_ID and API_KEY in the source code to enable cloud imports.');
+                return;
+            }
+            if (!oauthToken) {
+                alert('Please authenticate with Google Drive first by clicking "Auth Drive".');
+                return;
+            }
+            if (!pickerApiLoaded || !window.google || !window.google.picker) {
+                alert('Google Picker API is still loading. Please try again in a moment.');
+                return;
+            }
+
+            const view = new google.picker.View(google.picker.ViewId.DOCS);
+            view.setMimeTypes('image/png,image/jpeg,image/jpg');
+
+            const picker = new google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.NAV_HIDDEN)
+                .setDeveloperKey(GOOGLE_API_KEY)
+                .setAppId(GOOGLE_APP_ID)
+                .setOAuthToken(oauthToken)
+                .addView(view)
+                .addView(new google.picker.DocsUploadView())
+                .setCallback((data) => {
+                    if (data.action == google.picker.Action.PICKED) {
+                        const file = data.docs[0];
+                        const fileId = file.id;
+                        
+                        // Fetch the file content to display on canvas
+                        fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+                            headers: { 'Authorization': 'Bearer ' + oauthToken }
+                        })
+                        .then(response => response.blob())
+                        .then(blob => {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                                const img = document.getElementById(imgId);
+                                if (img) {
+                                    img.src = event.target.result;
+                                    img.classList.remove('hidden');
+                                }
+                                
+                                if (imgId === 'cert-bg-img') {
+                                    const bgContainer = document.getElementById('cert-bg-container');
+                                    if(bgContainer) bgContainer.classList.remove('hidden');
+                                } else if (defaultId) {
+                                    const def = document.getElementById(defaultId);
+                                    if(def) def.classList.add('hidden');
+                                }
+                            };
+                            reader.readAsDataURL(blob);
+                        })
+                        .catch(err => {
+                            console.error('Error fetching file from Drive:', err);
+                            alert('Could not download the file from Google Drive. Please ensure you have permission.');
+                        });
+                    }
+                })
+                .build();
+            picker.setVisible(true);
+        }
     </script>
 </body>
 </html>
